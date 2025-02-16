@@ -10,10 +10,10 @@ const app = express();
 // Load environment variables
 dotenv.config({ path: "./config/config.env" });
 
-// Update CORS to allow the new frontend URL
+// CORS Configuration
 app.use(
   cors({
-    origin: ["https://restaurant-peach-alpha.vercel.app"], // ✅ Updated frontend URL
+    origin: process.env.FRONTEND_URL.split(","), // Supports multiple origins if needed
     methods: ["POST"],
     credentials: true,
   })
@@ -22,22 +22,19 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Define routes
+// Routes
 app.use("/api/v1/reservation", reservationRouter);
 
-// Connect to the database
-dbConnection().catch((err) => {
-  console.error("Database Connection Failed:", err);
-  process.exit(1);
-});
+// Database Connection
+dbConnection();
 
-// Error handling middleware
+// Error Middleware
 app.use(errorMiddleware);
 
-// Start the server
+// 🚀 **Ensure PORT is correctly set for Render**
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 export default app;
