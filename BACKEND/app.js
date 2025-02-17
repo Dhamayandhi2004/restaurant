@@ -10,19 +10,13 @@ const app = express();
 // Load environment variables
 dotenv.config({ path: "./config/config.env" });
 
-// ✅ Fix CORS Issue
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://restaurant-jade-seven.vercel.app"); // Allow frontend
-  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  // ✅ Handle preflight requests
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  
-  next();
-});
+// ✅ Fix CORS with Credentials
+app.use(cors({
+  origin: "https://restaurant-jade-seven.vercel.app", // Your frontend URL
+  methods: ["POST", "GET", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true // ✅ Allow credentials
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
