@@ -24,7 +24,7 @@ function Reservation() {
   
       try {
           const { data } = await axios.post(
-              "https://restaurant-yj71.onrender.com/api/v1/reservation/send",
+              "https://restaurant-87vj.onrender.com/api/v1/reservation/send",
               { firstName, lastName, email, phone, date, time },
               {
                   headers: { "Content-Type": "application/json" },
