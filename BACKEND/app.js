@@ -11,13 +11,12 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 // CORS Configuration
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL.split(","), // Supports multiple origins if needed
-    methods: ["POST"],
-    credentials: true,
-  })
-);
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://restaurant-jade-seven.vercel.app/', // Allow only your frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
