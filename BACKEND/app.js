@@ -31,10 +31,4 @@ dbConnection();
 // Error Middleware
 app.use(errorMiddleware);
 
-// 🚀 **Ensure PORT is correctly set for Render**
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
-
 export default app;
