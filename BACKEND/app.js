@@ -10,8 +10,6 @@ const app = express();
 // Load environment variables
 dotenv.config({ path: "./config/config.env" });
 
-// CORS Configuration
-const cors = require('cors');
 app.use(cors({
   origin: 'https://restaurant-jade-seven.vercel.app/', // Allow only your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
