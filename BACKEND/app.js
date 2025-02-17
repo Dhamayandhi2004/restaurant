@@ -11,7 +11,7 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 app.use(cors({
-  origin: 'https://restaurant-jade-seven.vercel.app/', // Allow only your frontend
+  origin: 'https://restaurant-jade-seven.vercel.app', // Allow only your frontend
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
 }));
